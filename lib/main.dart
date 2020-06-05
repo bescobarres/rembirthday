@@ -2,6 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 
@@ -11,11 +12,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Welcome to Flutter',
       theme: ThemeData(primaryColor: Colors.white),
-      home: Center(
-        child: RandomWords(),
-      ),
+      home: RandomWords(),
     );
   }
 }
@@ -30,7 +30,7 @@ class RandomWordsState extends State<RandomWords> {
       appBar: AppBar(
         title: Text('Mi Rem-Birthday'),
         actions: <Widget>[
-          IconButton(icon: Icon(Icons.list), onPressed: _pushSaved)
+          IconButton(icon: Icon(Icons.list), onPressed: _pushSaved),
         ],
       ),
       body: _buildSuggestions(),
@@ -72,6 +72,7 @@ class RandomWordsState extends State<RandomWords> {
         padding: const EdgeInsets.all(16.0),
         itemBuilder: /*1*/ (context, i) {
           if (i.isOdd) return Divider(); /*2*/
+          print(i);
           final index = i ~/ 2; /*3*/
           if (index >= _suggestions.length) {
             _suggestions.addAll(generateWordPairs().take(10)); /*4*/
