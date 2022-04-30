@@ -1,0 +1,7 @@
+services:
+  dbpsql:
+    build: ./db/
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data:/bitnami/postgresql
